@@ -172,5 +172,3 @@ do {
         "8" { exit }
     }
 } while ($true)
-
-Update to final secure version
