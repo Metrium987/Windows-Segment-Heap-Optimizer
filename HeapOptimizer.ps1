@@ -100,7 +100,6 @@ function Expert-Mode {
     Write-Host ($Fmt -f "4. Block Threshold", "$((Get-CurrentValue 'HeapDeCommitFreeBlockThreshold')/1024)", "1", "32", "4", "2 or 4")
     Write-Host ("-" * 85)
 
-    # --- STEP BY STEP INPUT WITH DETAILED RULES ---
     Show-Header "1. HeapSegmentCommit"
     Write-Host "   [HELP] Sets the size of memory chunks the CPU prepares at once." -ForegroundColor Gray
     Write-Host "   [RULES] Min: 2 | Max: 64 | Windows Default: 8" -ForegroundColor Yellow
@@ -125,7 +124,6 @@ function Expert-Mode {
     Write-Host "   [REC.]  Use 2 (if you set Total Threshold to 32) or 4 (if you set it to 64)." -ForegroundColor Green
     $vBlock = Read-Host "   >> Enter Value (KiB)"
 
-    # Validation
     $vCommit = [math]::Max(2, [math]::Min(64, [int]$vCommit))
     $vRes    = [math]::Max(256, [math]::Min(4096, [int]$vRes))
     $vTotal  = [math]::Max(8, [math]::Min(512, [int]$vTotal))
@@ -140,35 +138,36 @@ function Show-Main-Menu {
     Write-Host "        WINDOWS MEMORY OPTIMIZER (SEGMENT HEAP)" -ForegroundColor Cyan
     Write-Host "        Developed by: METAPLAYER987" -ForegroundColor Yellow
     Write-Host "==========================================================" -ForegroundColor Cyan
-    Write-Host "1. ULTIMATE GAMING (16-32GB+ RAM / High-End CPU)" -ForegroundColor Cyan
-    Write-Host "   -> 32KiB Commit | 32KiB Threshold (Max Reactivity)"
-    Write-Host "2. STANDARD GAMING (16-32GB RAM / Mid-Range CPU)" -ForegroundColor Green
-    Write-Host "   -> 16KiB Commit | 64KiB Threshold (Best Smoothness)"
-    Write-Host "3. LITE CONFIG (4-16GB RAM / Low-End CPU)" -ForegroundColor Yellow
-    Write-Host "   -> 8KiB Commit | 64KiB Threshold (Avoid Overhead)"
-    Write-Host "4. ACTIVATE SEGMENT HEAP (Any RAM / Factory Defaults)" -ForegroundColor Magenta
-    Write-Host "   -> Global Activation (Safe & Standard)"
-    Write-Host "5. EXPERT MODE (Manual Tuning)" -ForegroundColor Red
-    Write-Host "   -> Custom KiB values for advanced users"
+    Write-Host "1. ULTIMATE GAMING (32GB+ RAM / High-End CPU)" -ForegroundColor Cyan
+    Write-Host "   -> 32KiB Commit | 32KiB Threshold (Extreme)"
+    Write-Host "2. OPTIMIZED STANDARD (16-32GB RAM / Mid-High CPU)" -ForegroundColor Green
+    Write-Host "   -> 16KiB Commit | 32KiB Threshold (Recommended)"
+    Write-Host "3. STANDARD GAMING (16GB RAM / Mid-Range CPU)" -ForegroundColor White
+    Write-Host "   -> 16KiB Commit | 64KiB Threshold (Stable)"
+    Write-Host "4. LITE CONFIG (4-16GB RAM / Low-End CPU)" -ForegroundColor Yellow
+    Write-Host "   -> 8KiB Commit | 64KiB Threshold (Safe)"
+    Write-Host "5. ACTIVATE SEGMENT HEAP (Any RAM / Factory Defaults)" -ForegroundColor Magenta
+    Write-Host "   -> Global Activation (Standard)"
+    Write-Host "6. EXPERT MODE (Manual Tuning)" -ForegroundColor Red
     Write-Host "----------------------------------------------------------"
-    Write-Host "6. BACKUP | 7. RESTORE DEFAULTS | 8. EXIT"
+    Write-Host "7. BACKUP | 8. RESTORE DEFAULTS | 9. EXIT"
 }
 
-# --- MAIN LOOP ---
 do {
     Show-Main-Menu
     $choice = Read-Host "`nSelect Option"
     switch ($choice) {
         "1" { Confirm-And-Apply -Name "ULTIMATE" -Reserve 0x100000 -Commit 0x8000 -Total 0x8000 -Block 0x800 }
-        "2" { Confirm-And-Apply -Name "STANDARD" -Reserve 0x100000 -Commit 0x4000 -Total 0x10000 -Block 0x1000 }
-        "3" { Confirm-And-Apply -Name "LITE CONFIG" -Reserve 0x100000 -Commit 0x2000 -Total 0x10000 -Block 0x1000 }
-        "4" { Confirm-And-Apply -Name "FACTORY DEFAULTS" -IsDefault $true }
-        "5" { Expert-Mode }
-        "6" { Export-Backup; pause }
-        "7" { 
+        "2" { Confirm-And-Apply -Name "OPTIMIZED STANDARD" -Reserve 0x100000 -Commit 0x4000 -Total 0x8000 -Block 0x800 }
+        "3" { Confirm-And-Apply -Name "STANDARD" -Reserve 0x100000 -Commit 0x4000 -Total 0x10000 -Block 0x1000 }
+        "4" { Confirm-And-Apply -Name "LITE CONFIG" -Reserve 0x100000 -Commit 0x2000 -Total 0x10000 -Block 0x1000 }
+        "5" { Confirm-And-Apply -Name "FACTORY DEFAULTS" -IsDefault $true }
+        "6" { Expert-Mode }
+        "7" { Export-Backup; pause }
+        "8" { 
             if (Test-Path $SHPath) { Remove-Item -Path $SHPath -Force }
             Write-Host "[-] System defaults restored." -ForegroundColor White; pause 
         }
-        "8" { exit }
+        "9" { exit }
     }
 } while ($true)
