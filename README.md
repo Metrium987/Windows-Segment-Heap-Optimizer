@@ -16,9 +16,10 @@ A powerful PowerShell utility designed to fine-tune the Windows Segment Heap for
 
 | Profile | Target Hardware | Technical Impact |
 | :--- | :--- | :--- |
-| **Ultimate** | 16-32GB+ RAM / High-End CPU | 32KiB Commit / 32KiB Threshold (Max Reactivity) |
-| **Standard** | 16-32GB RAM / Mid-Range CPU | 16KiB Commit / 64KiB Threshold (Smoothness) |
-| **Lite** | 4-16GB RAM / Low-End CPU | 8KiB Commit / 64KiB Threshold (Low Overhead) |
+| **Ultimate** | 32GB+ RAM / High-End CPU | 32KiB Commit / 32KiB Threshold (Extreme) |
+| **Optimized Standard** | 16-32GB RAM / Mid-High CPU | 16KiB Commit / 32KiB Threshold (Recommended) |
+| **Standard** | 16GB RAM / Mid-Range CPU | 16KiB Commit / 64KiB Threshold (Stable) |
+| **Lite** | 4-16GB RAM / Low-End CPU | 8KiB Commit / 64KiB Threshold (Safe) |
 | **Factory** | Any System | Restores Windows default values |
 
 ## 🛠️ How to Use
@@ -41,4 +42,5 @@ This tool modifies system registry settings. While it includes safety backups an
 - *Note: Not compatible with Windows 7 or 8.1.*
 
 ---
+
 *Optimized for performance by METAPLAYER987*
