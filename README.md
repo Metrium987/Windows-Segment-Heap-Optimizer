@@ -1,5 +1,48 @@
 # Windows Segment Heap Optimizer
 
+🚀 What's New in v1.2.1
+🛡️ Compatibility Shield (IFEO Exclusion)
+Added a dedicated module to prevent specific applications from using Segment Heap optimization. This is necessary to resolve potential stability issues, performance regressions, or crashes while maintaining system-wide memory efficiency.
+
+Dynamic Table: Instant visual feedback. Newly added or removed applications appear immediately in the console table.
+
+Smart Input Cleaning: Automatic extraction of executable names from paths and removal of quotes to ensure registry integrity.
+
+Dual-Architecture Support: Exclusions are automatically applied to both 64-bit and 32-bit (Wow6432Node) registry hives.
+
+Technical Description: Integrated as "Compatibility shield to fix app bugs or performance drops."
+
+📊 Professional UI Restoration
+Full restoration of the high-detail menu including hardware recommendations (e.g., 32GB+ RAM) and specific commit values.
+
+Fixed-width table formatting for professional terminal rendering.
+
+📅 Version History (Changelog)
+## What's New in v1.1 (Reference Base)
+Ultimate Expert Core: Implementation of the high-performance memory management engine.
+
+4-Tier Optimization:
+
+Ultimate: 32KiB Commit | 32KiB Threshold (32GB+ RAM).
+
+Optimized: 16KiB Commit | 32KiB Threshold (16-32GB RAM).
+
+Standard: 16KiB Commit | 64KiB Threshold (16GB RAM).
+
+Lite: 8KiB Commit | 64KiB Threshold (4-16GB RAM).
+
+Automated Safety: Systematic .reg backup before any modification.
+
+Admin Auto-Elevation: Forced Administrator privileges for registry write access.
+
+
+🎨 Professional Expert UI
+Metrium987 Visual Identity: Implementation of the color-coded console interface (Green/Yellow/Red).
+
+Technical Transparency: Display of exact hex values and hardware recommendations for every profile.
+
+# Windows Segment Heap Optimizer
+
 Developed by **METAPLAYER987**
 
 A powerful PowerShell utility designed to fine-tune the Windows Segment Heap for gamers and power users. This tool helps improve FPS stability, reduce micro-stutters (0.1% lows), and optimize memory management on Windows 10 and 11.
@@ -44,3 +87,4 @@ This tool modifies system registry settings. While it includes safety backups an
 ---
 
 *Optimized for performance by METAPLAYER987*
+
